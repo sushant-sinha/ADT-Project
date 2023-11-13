@@ -29,7 +29,10 @@ class GraphGenerator {
                     } else {
                         edge = new Edge(v, u);
                     }
-                    edges.add(edge);
+                    // Ensure only one directed edge is added
+                    if (!edges.contains(edge)) {
+                        edges.add(edge);
+                    }
                 }
             }
         }
@@ -89,12 +92,25 @@ class GraphGenerator {
             this.u = u;
             this.v = v;
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+            Edge edge = (Edge) obj;
+            return (u.equals(edge.u) && v.equals(edge.v)) || (u.equals(edge.v) && v.equals(edge.u));
+        }
+
+        @Override
+        public int hashCode() {
+            return u.hashCode() + v.hashCode();
+        }
     }
 
     public static void main(String[] args) {
-        int n = 10;
-        double r = 0.3;
-        int upperCap = 10;
+        int n = 100;
+        double r = 0.2;
+        int upperCap = 2;
         String outputFileName = "graph_adjacency_list.csv";
 
         generateSinkSourceGraph(n, r, upperCap, outputFileName);

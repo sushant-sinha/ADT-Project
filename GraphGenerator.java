@@ -111,7 +111,7 @@ class GraphGenerator {
         int n = 100;
         double r = 0.2;
         int upperCap = 2;
-        String outputFileName = "graph_adjacency_list.csv";
+        String outputFileName = "graph_adjacency_list_"+n+"_"+r+"_"+upperCap+".csv";
 
         generateSinkSourceGraph(n, r, upperCap, outputFileName);
     }

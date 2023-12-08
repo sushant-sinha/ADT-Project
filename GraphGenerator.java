@@ -108,9 +108,9 @@ class GraphGenerator {
     }
 
     public static void main(String[] args) {
-        int n = 100;
-        double r = 0.2;
-        int upperCap = 2;
+        int n = 200;
+        double r = 0.3;
+        int upperCap = 50;
         String outputFileName = "graph_adjacency_list_"+n+"_"+r+"_"+upperCap+".csv";
 
         generateSinkSourceGraph(n, r, upperCap, outputFileName);

@@ -6,15 +6,16 @@ import java.util.*;
 public class LongestAcyclicPathFinder {
 
     public static void main(String[] args) {
-        String inputFile = "graph_adjacency_list.csv";
-        int startNode = 83;
+        String inputFile = "graph_adjacency_list_100_0.2_2.csv";
+        int startNode = 6;
+        // 8,7
 
         System.out.println("Start node is "+startNode);
 
         try {
             Map<Integer, Map<Integer, Integer>> adjacencyList = readGraph(inputFile);
-            int endNode = findEndNodeOfLongestPath(adjacencyList, startNode);
-            System.out.println("The end node of the longest acyclic path is: " + endNode);
+            int endNode[] = findEndNodeOfLongestPath(adjacencyList, startNode);
+            System.out.println("The end node of the longest acyclic path is: " + endNode[0]+ " and is at a distance(number of hops) of "+endNode[1]);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,7 +45,7 @@ public class LongestAcyclicPathFinder {
         return adjacencyList;
     }
 
-    private static int findEndNodeOfLongestPath(Map<Integer, Map<Integer, Integer>> graph, int startNode) {
+    private static int[] findEndNodeOfLongestPath(Map<Integer, Map<Integer, Integer>> graph, int startNode) {
         Queue<Integer> queue = new LinkedList<>();
         Map<Integer, Integer> distance = new HashMap<>();
         queue.add(startNode);
@@ -70,7 +71,7 @@ public class LongestAcyclicPathFinder {
                 endNode = node;
             }
         }
-
-        return endNode;
+        
+        return new int[]{endNode, maxDistance};
     }
 }

@@ -10,9 +10,9 @@ public class FordFulkersonMaxCap {
     static List<Integer> longestAugPath;
 
     public static void main(String[] args) {
-        String inputFile = "graph_adjacency_list_100_0.2_50.csv";
-        int source = 53; // Specify the source node
-        int sink = 6;  // Specify the sink node
+        String inputFile = "graph_adjacency_list_100_0.3_50.csv";
+        int source = 39; // Specify the source node
+        int sink = 16;  // Specify the sink node
 
         try {
             Map<Integer, Map<Integer, Integer>> graph = readGraph(inputFile);
@@ -24,10 +24,10 @@ public class FordFulkersonMaxCap {
             double mpl = meanLength / result[2];
             int totalEdges = result[3];
 
-            System.out.println("Total Paths: " + paths);
+            System.out.println("Total Number of Augmenting Paths: " + paths);
             System.out.println("Augmenting path with maximum capacity is: "+longestAugPath +" and has "+result[4]+" capacity");
-            System.out.println("Mean Length: " + meanLength);
-            System.out.println("Mean Proportional Length: " + mpl);
+            System.out.println("Mean Length(ML = Sum of edges in Augmenting path with maximum capacity/Number of Paths): " + meanLength);
+            System.out.println("Mean Proportional Length(MPL = ML/Length of Longest Acyclic Path discovered): " + mpl);
             System.out.println("Total Edges: " + totalEdges);
 
         } catch (IOException e) {
@@ -56,7 +56,6 @@ public class FordFulkersonMaxCap {
                 adjacencyList.put(vertexId, neighbors);
             }
         }
-        System.out.println(totalEdgesInGraph);
         return adjacencyList;
     }
 

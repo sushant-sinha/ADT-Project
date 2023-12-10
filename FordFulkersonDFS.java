@@ -20,12 +20,12 @@ public class FordFulkersonDFS {
             double meanLength = (double) result[1] / paths;
             double mpl = meanLength / result[2];
             int totalEdges = result[3];
-            System.out.println(result[2]);
 
-            System.out.println("Paths: " + paths);
-            System.out.println("Mean Length: " + meanLength);
-            System.out.println("Mean Proportional Length: " + mpl);
-            System.out.println("Total Edges: " + totalEdges);
+            System.out.println("Total Number of Augmenting Paths: " + paths);
+            System.out.println("Mean Length(ML = Sum of edges in Augmenting Paths/Number of Augmenting Paths): " + meanLength);
+            System.out.println("Mean Proportional Length(MPL = ML/Length of Longest Acyclic Path discovered): " + mpl);
+            System.out.println("Number of Edges in "+inputFile +" : " + totalEdges);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,8 +53,6 @@ public class FordFulkersonDFS {
                 adjacencyList.put(vertexId, neighbors);
             }
         }
-
-        System.out.println(totalEdgesInGraph);
 
         return adjacencyList;
     }
@@ -158,7 +156,6 @@ public class FordFulkersonDFS {
             curLength++;
         }
         Collections.reverse(path);
-        System.out.println(path);
         maxLength = Math.max(maxLength, curLength);
         return path;
     }

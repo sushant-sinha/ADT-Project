@@ -3,19 +3,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class FordFulkersonSAP {
-
+public class FordFulkersonRandom {
+    
     static int maxLength=-1;
     static int totalEdgesInGraph=-1;
 
     public static void main(String[] args) {
-        String inputFile = "graph_adjacency_list_100_0.2_2.csv";
-        int source = 6; // Specify the source node
-        int sink = 14;  // Specify the sink node
+        String inputFile = "graph_adjacency_list_200_0.3_50.csv";
+        int source = 146; // Specify the source node
+        int sink = 136;  // Specify the sink node
 
         try {
             Map<Integer, Map<Integer, Integer>> graph = readGraph(inputFile);
-            int[] result = fordFulkersonSAP(graph, source, sink);
+            int[] result = fordFulkersonRandom(graph, source, sink);
+
             int paths = result[0];
             double meanLength = (double) result[1] / paths;
             double mpl = meanLength / result[2];
@@ -25,12 +26,12 @@ public class FordFulkersonSAP {
             System.out.println("Mean Length(ML = Sum of edges in Augmenting Paths/Number of Augmenting Paths): " + meanLength);
             System.out.println("Mean Proportional Length(MPL = ML/Length of Longest Acyclic Path discovered): " + mpl);
             System.out.println("Number of Edges in "+inputFile +" : " + totalEdges);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    
     private static Map<Integer, Map<Integer, Integer>> readGraph(String fileName) throws IOException {
         Map<Integer, Map<Integer, Integer>> adjacencyList = new HashMap<>();
 
@@ -55,12 +56,13 @@ public class FordFulkersonSAP {
         return adjacencyList;
     }
 
-    private static int[] fordFulkersonSAP(Map<Integer, Map<Integer, Integer>> graph, int source, int sink) {
+
+    private static int[] fordFulkersonRandom(Map<Integer, Map<Integer, Integer>> graph, int source, int sink) {
         int paths = 0;
         int totalLength = 0;
 
         while (true) {
-            List<Integer> augmentingPath = dijkstra(graph, source, sink);
+            List<Integer> augmentingPath = dijkstraRandom(graph, source, sink);
             if (augmentingPath.isEmpty()) {
                 break;
             }
@@ -88,14 +90,14 @@ public class FordFulkersonSAP {
         return new int[]{paths, totalLength, maxLength, totalEdgesInGraph};
     }
 
-    private static List<Integer> dijkstra(Map<Integer, Map<Integer, Integer>> graph, int source, int sink) {
+    private static List<Integer> dijkstraRandom(Map<Integer, Map<Integer, Integer>> graph, int source, int sink) {
         Map<Integer, Integer> distance = new HashMap<>();
         Map<Integer, Integer> parent = new HashMap<>();
         PriorityQueue<Pair<Integer, Integer>> minHeap = new PriorityQueue<>(Comparator.comparingInt(Pair::getSecond));
         Set<Integer> visited = new HashSet<>();
 
         distance.put(source, 0);
-        minHeap.offer(new Pair<>(source, 0));
+        minHeap.offer(new Pair<>(source, new Random().nextInt())); // Use a random value as the key
 
         while (!minHeap.isEmpty()) {
             int u = minHeap.poll().getFirst();
@@ -113,13 +115,13 @@ public class FordFulkersonSAP {
             for (int v : graph.getOrDefault(u, Collections.emptyMap()).keySet()) {
                 int capacity = graph.get(u).get(v);
                 if (capacity > 0) {  // Check if the edge has positive capacity
-                    int weight = 1; // Treat the edge lengths as unit distances for SAP
+                    int weight = 1; // Treat the edge lengths as unit distances for Random
                     int alt = distance.get(u) + weight;
 
                     if (!distance.containsKey(v) || alt < distance.get(v)) {
                         distance.put(v, alt);
                         parent.put(v, u);
-                        minHeap.offer(new Pair<>(v, alt));
+                        minHeap.offer(new Pair<>(v, new Random().nextInt())); // Use a random value as the key
                     }
                 }
             }

@@ -64,10 +64,10 @@ This will return the start and end node along with the number of hops(path lengt
 
 ### Running Simulations
 For running the simulations, select a version of FordFulkerson:
-- FordFulkersonSAP.java
-- FordFulkersonDFS.java
-- FordFulkersonMaxCap.java
-- FordFulkersonRandom.java
+- ```FordFulkersonSAP.java```
+- ```FordFulkersonDFS.java```
+- ```FordFulkersonMaxCap.java```
+- ```FordFulkersonRandom.java```
 
 Edit the parameters: inputFile, source and sink:
 

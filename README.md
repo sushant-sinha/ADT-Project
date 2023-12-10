@@ -17,11 +17,9 @@ We will only need java to implement all aspects of this project. <b>No</b> exter
 
 ### Prerequisites
 
-Users need to install Java before using your project.
-
-### Installation
-
-Step-by-step guide on how to install your project.
+- Users need to install Java before using your project.
+- Users need to compile the files using the ```javac``` command (possibly after every update).
+- Followed by the standard ```java <filename>.java``` command
 
 ```bash
 git clone https://github.com/sushant-sinha/ADT-Project.git

@@ -6,7 +6,7 @@ import java.util.*;
 public class FordFulkersonRandom {
     
     static int maxLength=-1;
-    static int totalEdgesInGraph=-1;
+    static int totalEdgesInGraph=0;
 
     public static void main(String[] args) {
         String inputFile = "graph_adjacency_list_200_0.3_50.csv";

@@ -6,23 +6,25 @@ import java.util.*;
 public class FordFulkersonSAP {
 
     static int maxLength=-1;
-    static int totalEdgesInGraph=-1;
+    static int totalEdgesInGraph=0;
 
     public static void main(String[] args) {
-        String inputFile = "graph_adjacency_list_100_0.2_2.csv";
         int source = 6; // Specify the source node
-        int sink = 14;  // Specify the sink node
+        String inputFile = "graph_adjacency_list_10_0.7_10.csv";
+        int source = 4; // Specify the source node
+        int sink = 3;  // Specify the sink node
 
         try {
             Map<Integer, Map<Integer, Integer>> graph = readGraph(inputFile);
+            System.out.println("Below are the augmenting paths:");
             int[] result = fordFulkersonSAP(graph, source, sink);
             int paths = result[0];
-            double meanLength = (double) result[1] / paths;
-            double mpl = meanLength / result[2];
+            double ml = (double) result[1] / paths;
+            double mpl = ml / result[2];
             int totalEdges = result[3];
 
             System.out.println("Total Number of Augmenting Paths: " + paths);
-            System.out.println("Mean Length(ML = Sum of edges in Augmenting Paths/Number of Augmenting Paths): " + meanLength);
+            System.out.println("Mean Length(ML = Sum of edges in Augmenting Paths/Number of Augmenting Paths): " + ml);
             System.out.println("Mean Proportional Length(MPL = ML/Length of Longest Acyclic Path discovered): " + mpl);
             System.out.println("Number of Edges in "+inputFile +" : " + totalEdges);
 
@@ -64,6 +66,8 @@ public class FordFulkersonSAP {
             if (augmentingPath.isEmpty()) {
                 break;
             }
+
+            System.out.println(augmentingPath);
 
             paths++;
             totalLength += augmentingPath.size();

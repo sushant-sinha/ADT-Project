@@ -6,13 +6,13 @@ import java.util.*;
 public class FordFulkersonMaxCap {
 
     static int maxLength=-1;
-    static int totalEdgesInGraph=-1;
+    static int totalEdgesInGraph=0;
     static List<Integer> longestAugPath;
 
     public static void main(String[] args) {
-        String inputFile = "graph_adjacency_list_100_0.3_50.csv";
-        int source = 39; // Specify the source node
-        int sink = 16;  // Specify the sink node
+        String inputFile = "graph_adjacency_list_200_0.3_50.csv";
+        int source = 146; // Specify the source node
+        int sink = 136;  // Specify the sink node
 
         try {
             Map<Integer, Map<Integer, Integer>> graph = readGraph(inputFile);

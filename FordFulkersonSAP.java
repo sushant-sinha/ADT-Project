@@ -9,14 +9,12 @@ public class FordFulkersonSAP {
     static int totalEdgesInGraph=0;
 
     public static void main(String[] args) {
+        String inputFile = "graph_adjacency_list_100_0.2_2.csv"; // Specify the inputFile
         int source = 6; // Specify the source node
-        String inputFile = "graph_adjacency_list_10_0.7_10.csv";
-        int source = 4; // Specify the source node
-        int sink = 3;  // Specify the sink node
+        int sink = 14;  // Specify the sink node
 
         try {
             Map<Integer, Map<Integer, Integer>> graph = readGraph(inputFile);
-            System.out.println("Below are the augmenting paths:");
             int[] result = fordFulkersonSAP(graph, source, sink);
             int paths = result[0];
             double ml = (double) result[1] / paths;
@@ -66,8 +64,6 @@ public class FordFulkersonSAP {
             if (augmentingPath.isEmpty()) {
                 break;
             }
-
-            System.out.println(augmentingPath);
 
             paths++;
             totalLength += augmentingPath.size();

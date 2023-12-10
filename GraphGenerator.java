@@ -8,17 +8,17 @@ import java.util.Random;
 import java.util.Set;
 
 class GraphGenerator {
-    public static void generateSinkSourceGraph(int n, double r, int upperCap, String outputFileName) {
+    public static void generateGraph(int n, double r, int upperCap, String outputFileName) {
         Set<Vertex> vertices = new HashSet<>();
         Set<Edge> edges = new HashSet<>();
 
-        // Create vertices and assign random coordinates
+        // Create vertices and assign them random coordinates
         for (int i = 0; i < n; i++) {
             Vertex vertex = new Vertex();
             vertices.add(vertex);
         }
 
-        // Generate edges based on distance and random capacities
+        // Generate edges based on (euclidean)distance
         for (Vertex u : vertices) {
             for (Vertex v : vertices) {
                 if (!u.equals(v) && Math.pow(u.x - v.x, 2) + Math.pow(u.y - v.y, 2) <= Math.pow(r, 2)) {
@@ -108,11 +108,13 @@ class GraphGenerator {
     }
 
     public static void main(String[] args) {
-        int n = 200;
-        double r = 0.3;
-        int upperCap = 50;
+
+        // update the parameters here
+        int n = 1000;
+        double r = 0.2;
+        int upperCap = 100;
         String outputFileName = "graph_adjacency_list_"+n+"_"+r+"_"+upperCap+".csv";
 
-        generateSinkSourceGraph(n, r, upperCap, outputFileName);
+        generateGraph(n, r, upperCap, outputFileName);
     }
 }

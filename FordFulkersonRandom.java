@@ -9,9 +9,9 @@ public class FordFulkersonRandom {
     static int totalEdgesInGraph=0;
 
     public static void main(String[] args) {
-        String inputFile = "graph_adjacency_list_200_0.3_50.csv";
-        int source = 146; // Specify the source node
-        int sink = 136;  // Specify the sink node
+        String inputFile = "graph_adjacency_list_100_0.2_2.csv"; // Specify the inputFile
+        int source = 6; // Specify the source node
+        int sink = 14;  // Specify the sink node
 
         try {
             Map<Integer, Map<Integer, Integer>> graph = readGraph(inputFile);

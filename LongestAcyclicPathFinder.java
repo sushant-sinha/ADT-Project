@@ -6,9 +6,9 @@ import java.util.*;
 public class LongestAcyclicPathFinder {
 
     public static void main(String[] args) {
-        String inputFile = "graph_adjacency_list_100_0.2_2.csv";
-        int startNode = 6;
-        // 8,7
+        String inputFile = "graph_adjacency_list_200_0.2_2.csv";
+        int n=200;
+        int startNode = (int) ((Math.random() * (n - 1)) + 1);
 
         System.out.println("Start node is "+startNode);
 

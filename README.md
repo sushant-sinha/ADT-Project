@@ -8,7 +8,7 @@
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-    - [Setup](#setup)
+    - [Simulation Setup](#simulation-setup)
     - [Running Simulations](#running-simulations)
 
 ## Getting Started
@@ -17,9 +17,7 @@ We will only need java to implement all aspects of this project. <b>No</b> exter
 
 ### Prerequisites
 
-- Users need to install Java before using your project.
-- Users need to compile the files using the ```javac``` command (possibly after every update).
-- Followed by the standard ```java <filename>.java``` command
+Clone the repo
 
 ```bash
 git clone https://github.com/sushant-sinha/ADT-Project.git
@@ -28,7 +26,12 @@ cd ADT-Project
 
 ## Usage
 
-### Setup
+
+- Users need to install Java before using your project.
+- Users need to compile the files using the ```javac <filename>.java``` command (possibly after every update).
+- Followed by the standard ```java <filename>``` command
+
+### Simulation Setup
 First, we need to update the ```GraphGenerator.java``` file to generate the required csv files(if not present already).
 
 ```
